@@ -41,3 +41,33 @@ var twoSum = function (nums, target) {
     numsMap[nums[i]] = i;
   }
 };
+
+// 14. Longest Common Prefix
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+  if (strs.length === 0) return '';
+
+  if (strs.length === 1) return strs[0];
+
+  let commonPrefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    if (strs[i].length < commonPrefix.length) {
+      commonPrefix = commonPrefix.slice(0, strs[i].length);
+    }
+
+    for (let j = 0; j < strs[i].length; j++) {
+      if (strs[i][j] !== commonPrefix[j]) {
+        commonPrefix = commonPrefix.slice(0, j);
+        break;
+      }
+
+      if (!commonPrefix[j]) break;
+    }
+  }
+
+  return commonPrefix;
+};
