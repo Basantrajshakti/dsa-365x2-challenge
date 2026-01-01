@@ -41,11 +41,11 @@ Solutions are primarily written in:
 
 ## 🎯 Why This Challenge?
 
-- Strengthen **core CS fundamentals**
-- Build **discipline and consistency**
-- Create a **transparent learning log**
-- Think like an **engineer, not a memorizer**
-- Not for **interview problem-solving**
+- Strengthen **core CS fundamentals**.
+- Build **discipline and consistency**.
+- Create a **transparent learning log**.
+- Think like an **engineer, not a memorizer**.
+- Not for **interview problem-solving**. **Just for personal growth**.
 
 ---
 
