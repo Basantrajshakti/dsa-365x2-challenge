@@ -21,26 +21,6 @@ The goal is simple:
 
 ---
 
-## 🧩 Topics Covered
-
-Over the year, this repo will cover:
-
-- Arrays & Strings
-- Hashing
-- Two Pointers & Sliding Window
-- Stack & Queue
-- Linked Lists
-- Binary Trees & BSTs
-- Heaps & Priority Queues
-- Recursion & Backtracking
-- Graphs (BFS / DFS)
-- Dynamic Programming
-- Greedy Algorithms
-- Bit Manipulation
-- Math & Number Theory
-
----
-
 ## 🛠 Languages Used
 
 Solutions are primarily written in:
