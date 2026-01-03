@@ -72,3 +72,27 @@ var searchInsert = function (nums, target) {
     if (low > high) return low;
   }
 };
+
+// Biweekly Contest 173
+
+// Q1.Reverse String Prefix 
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reversePrefix = function (s, k) {
+  if (k === 1) return s;
+
+  if (s === '') return s;
+
+  const str = s.split('');
+
+  for (let i = 0, j = k - 1; i < k / 2; i++, j--) {
+    let temp = str[i];
+    str[i] = str[j];
+    str[j] = temp;
+  }
+
+  return str.join('');
+};
