@@ -42,11 +42,41 @@ var moveZeroes = function (nums) {
 
 
 // 303. Range Sum Query - Immutable
+// /**
+//  * @param {number[]} nums
+//  */
+// var NumArray = function (nums) {
+//   this.nums = nums;
+// };
+
+// /**
+//  * @param {number} left
+//  * @param {number} right
+//  * @return {number}
+//  */
+// NumArray.prototype.sumRange = function (left, right) {
+//   let sum = 0;
+
+//   for (let i = left; i <= right; i++) {
+//     sum += this.nums[i];
+//   }
+
+//   return sum;
+// };
+
+
+// With optimizations
 /**
  * @param {number[]} nums
  */
 var NumArray = function (nums) {
-  this.nums = nums;
+  // build 1-based prefix sum
+  this.prefix = new Array(nums.length);
+  this.prefix[0] = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    this.prefix[i + 1] = this.prefix[i] + nums[i];
+  }
 };
 
 /** 
@@ -55,11 +85,6 @@ var NumArray = function (nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function (left, right) {
-  let sum = 0;
-
-  for (let i = left; i <= right; i++) {
-    sum += this.nums[i];
-  }
-
-  return sum;
+  // sum of nums[left..right] = prefix[right + 1] - prefix[left]
+  return this.prefix[right + 1] - this.prefix[left];
 };
