@@ -39,3 +39,27 @@ var moveZeroes = function (nums) {
     }
   }
 };
+
+
+// 303. Range Sum Query - Immutable
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function (nums) {
+  this.nums = nums;
+};
+
+/** 
+ * @param {number} left 
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function (left, right) {
+  let sum = 0;
+
+  for (let i = left; i <= right; i++) {
+    sum += this.nums[i];
+  }
+
+  return sum;
+};
