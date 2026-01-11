@@ -68,3 +68,39 @@ var romanToInt = function (s) {
 
   return total;
 };
+
+
+// 20. Valid Parentheses
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+
+const isOpening = (char) => {
+  return char === '(' || char === '[' || char === '{';
+}
+
+const getClosing = (char) => {
+  if (char === '(') return ')';
+  else if (char === '[') return ']';
+  else if (char === '{') return '}';
+  else return '';
+}
+
+var isValid = function (s) {
+  let stack = [];
+
+  for (let i = 0; i < s.length; i++) {
+    if (isOpening(s[i])) {
+      stack.push(s[i]);
+    } else {
+      if (s[i] !== getClosing(stack[stack.length - 1])) {
+        return false;
+      } else {
+        stack.pop();
+      }
+    }
+  }
+
+  return stack.length === 0
+};
