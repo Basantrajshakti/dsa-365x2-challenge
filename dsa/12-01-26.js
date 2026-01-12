@@ -28,3 +28,21 @@ var strStr = function (haystack, needle) {
   }
   return -1;
 };
+
+
+// 58. Length of Last Word
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLastWord = function (s) {
+  let len = 0;
+  let str = s.trim();
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    if (str[i] === ' ') return len;
+    else len += 1;
+  }
+
+  return len;
+};
