@@ -57,11 +57,30 @@ var addBinary = function (a, b) {
 
 
 // 125. Valid Palindrome
+// /**
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// var isPalindrome = function (s) {
+//   s = s.toLowerCase().split(/[\W_]+/g).join('');
+//   return s === s.split('').reverse().join('');
+// };
+
+// With optimizations
 /**
  * @param {string} s
  * @return {boolean}
  */
 var isPalindrome = function (s) {
-  s = s.toLowerCase().split(/[\W_]+/g).join('');
-  return s === s.split('').reverse().join('');
+  const str = s.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  if (str.length <= 1) return true;
+
+  const len = str.length / 2;
+
+  for (let i = 0, j = str.length - 1; i < len; j--, i++) {
+    if (str[i] !== str[j]) return false;
+  }
+
+  return true;
 };
