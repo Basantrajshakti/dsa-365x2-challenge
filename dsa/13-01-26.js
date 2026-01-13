@@ -54,3 +54,14 @@
 var addBinary = function (a, b) {
   return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
 };
+
+
+// 125. Valid Palindrome
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+  s = s.toLowerCase().split(/[\W_]+/g).join('');
+  return s === s.split('').reverse().join('');
+};
