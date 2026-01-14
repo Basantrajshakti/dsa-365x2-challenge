@@ -14,3 +14,19 @@ var convertToTitle = function (columnNumber) {
   }
   return ans;
 };
+
+// 171. Excel Sheet Column Number
+/**
+ * @param {string} columnTitle
+ * @return {number}
+ */
+var titleToNumber = function (columnTitle) {
+  let result = 0;
+
+  for (let ch of columnTitle) {
+    let value = ch.charCodeAt(0) - 'A'.charCodeAt(0) + 1; // A=1, B=2, ..., Z=26
+    result = result * 26 + value;
+  }
+
+  return result;
+};
