@@ -49,27 +49,52 @@ var isIsomorphic = function (s, t) {
 
 
 // 242. Valid Anagram
+// /**
+//  * @param {string} s
+//  * @param {string} t
+//  * @return {boolean}
+//  */
+// var isAnagram = function (s, t) {
+//   if (s.length !== t.length) return false;
+//   if (s === t) return true;
+
+//   const sMap = {};
+//   const tMap = {};
+//   for (let i = 0; i < s.length; i++) {
+//     if (s[i] in sMap) sMap[s[i]] += 1;
+//     else sMap[s[i]] = 1;
+
+//     if (t[i] in tMap) tMap[t[i]] += 1;
+//     else tMap[t[i]] = 1;
+//   }
+
+//   for (let i = 0; i < s.length; i++) {
+//     if (sMap[s[i]] !== tMap[s[i]]) return false;
+//   }
+
+//   return true;
+// };
+
+
+// With optimizations
 /**
  * @param {string} s
  * @param {string} t
  * @return {boolean}
  */
 var isAnagram = function (s, t) {
-  if (s.length !== t.length) return false;
-  if (s === t) return true;
+  if (s.length != t.length) return false;
 
-  const sMap = {};
-  const tMap = {};
+  const freq = new Uint16Array(26),
+    base = "a".charCodeAt(0);
+
   for (let i = 0; i < s.length; i++) {
-    if (s[i] in sMap) sMap[s[i]] += 1;
-    else sMap[s[i]] = 1;
-
-    if (t[i] in tMap) tMap[t[i]] += 1;
-    else tMap[t[i]] = 1;
+    freq[s.charCodeAt(i) - base]++;
+    freq[t.charCodeAt(i) - base]--;
   }
 
-  for (let i = 0; i < s.length; i++) {
-    if (sMap[s[i]] !== tMap[s[i]]) return false;
+  for (let i = 0; i < 26; i++) {
+    if (freq[i] != 0) return false;
   }
 
   return true;
