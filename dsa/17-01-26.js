@@ -111,17 +111,40 @@ var wordPattern = function (pat, s) {
 //   return true;
 // };
 
-
-// With optimizations
+// With 2 loops 
 /**
  * @param {string} rn
  * @param {string} m
  * @return {boolean}
  */
 var canConstruct = function (rn, m) {
-  for (const char of m) {
-    rn = rn.replace(char, "");
+  let map = new Map();
+
+  for (let i = 0; i < m.length; i++) {
+    map.set(m[i], (map.get(m[i]) || 0) + 1);
   }
 
-  return !rn;
+  for (let i = 0; i < rn.length; i++) {
+    if (!map.get(rn[i])) {
+      return false;
+    }
+    map.set(rn[i], (map.get(rn[i]) || 0) - 1);
+  }
+
+  return true;
 };
+
+
+// With optimizations
+// /**
+//  * @param {string} rn
+//  * @param {string} m
+//  * @return {boolean}
+//  */
+// var canConstruct = function (rn, m) {
+//   for (const char of m) {
+//     rn = rn.replace(char, "");
+//   }
+
+//   return !rn;
+// };
