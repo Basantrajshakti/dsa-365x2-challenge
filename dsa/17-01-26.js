@@ -29,25 +29,57 @@
 
 
 // clean logic
+// /**
+//  * @param {string} pattern
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// var wordPattern = function (pattern, s) {
+//   const map = {};
+//   const words = s.split(' ');
+
+//   if (pattern.length !== words.length) return false;
+
+//   for (let i = 0; i < pattern.length; i++) {
+//     const char = pattern[i];
+//     const word = words[i] + '-'; // Just making it atleast 2 chars to prevent mappings like a->b and b->a
+
+//     if ((map[char] && map[char] !== word) || (map[word] && map[word] !== char)) return false;
+
+//     map[char] = word;
+//     map[word] = char;
+//   }
+
+//   return true;
+// };
+
+// With opimizations
 /**
- * @param {string} pattern
+ * @param {string} pat
  * @param {string} s
  * @return {boolean}
  */
-var wordPattern = function (pattern, s) {
-  const map = {};
-  const words = s.split(' ');
+var wordPattern = function (pat, s) {
+  const map = new Map();
+  s = s.split(' ');
 
-  if (pattern.length !== words.length) return false;
+  if (pat.length !== s.length) return false;
 
-  for (let i = 0; i < pattern.length; i++) {
-    const char = pattern[i];
-    const word = words[i] + '-'; // Just making it atleast 2 words
+  for (let i = 0; i < pat.length; i++) {
+    const char = pat[i];
+    const word = s[i] + '-';
 
-    if ((map[char] && map[char] !== word) || (map[word] && map[word] !== char)) return false;
+    if (map.has(char)) {
+      if (map.get(char) !== word) return false;
+    } else {
+      map.set(char, word);
+    }
 
-    map[char] = word;
-    map[word] = char;
+    if (map.has(word)) {
+      if (map.get(word) !== char) return false;
+    } else {
+      map.set(word, char);
+    }
   }
 
   return true;
