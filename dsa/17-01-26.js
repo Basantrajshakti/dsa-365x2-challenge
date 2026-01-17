@@ -1,6 +1,34 @@
 // Strings
 
 // 290. Word Pattern
+// /**
+//  * @param {string} pattern
+//  * @param {string} s
+//  * @return {boolean}
+//  */
+// var wordPattern = function (pattern, s) {
+//   const map = {};
+//   let wordCtr = 0;
+
+//   for (let i = 0, j = 0; i < pattern.length || j < s.length; i++, j++) {
+//     let currentWord = '';
+//     while (s[j] !== ' ' && j < s.length) currentWord += s[j++];
+
+//     if (
+//       (map[pattern[i]] && map[pattern[i]] !== currentWord) ||
+//       (!map[pattern[i]] && map[currentWord + 'word'])
+//     ) return false;
+
+//     map[pattern[i]] = currentWord;
+//     map[currentWord + 'word'] = true;
+//     if (currentWord) wordCtr++;
+//   }
+
+//   return wordCtr === pattern.length;
+// };
+
+
+// clean logic
 /**
  * @param {string} pattern
  * @param {string} s
@@ -8,21 +36,19 @@
  */
 var wordPattern = function (pattern, s) {
   const map = {};
-  let wordCtr = 0;
+  const words = s.split(' ');
 
-  for (let i = 0, j = 0; i < pattern.length || j < s.length; i++, j++) {
-    let currentWord = '';
-    while (s[j] !== ' ' && j < s.length) currentWord += s[j++];
+  if (pattern.length !== words.length) return false;
 
-    if (
-      (map[pattern[i]] && map[pattern[i]] !== currentWord) ||
-      (!map[pattern[i]] && map[currentWord + 'word'])
-    ) return false;
+  for (let i = 0; i < pattern.length; i++) {
+    const char = pattern[i];
+    const word = words[i] + '-'; // Just making it atleast 2 words
 
-    map[pattern[i]] = currentWord;
-    map[currentWord + 'word'] = true;
-    if (currentWord) wordCtr++;
+    if ((map[char] && map[char] !== word) || (map[word] && map[word] !== char)) return false;
+
+    map[char] = word;
+    map[word] = char;
   }
 
-  return wordCtr === pattern.length;
+  return true;
 };
