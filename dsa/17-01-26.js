@@ -86,27 +86,42 @@ var wordPattern = function (pat, s) {
 };
 
 
-// 257. Binary Tree Paths
+// 383. Ransom Note
+// /**
+//  * @param {string} ransomNote
+//  * @param {string} magazine
+//  * @return {boolean}
+//  */
+// var canConstruct = function (rn, m) {
+//   const map1 = new Map();
+//   const map2 = new Map();
+
+//   for (let i = 0; i < rn.length; i++) {
+//     map1.set(rn[i], (map1.get(rn[i]) || 0) + 1);
+//   }
+
+//   for (let i = 0; i < m.length; i++) {
+//     map2.set(m[i], (map2.get(m[i]) || 0) + 1);
+//   }
+
+//   for (let i = 0; i < rn.length; i++) {
+//     if (map1.get(rn[i]) > map2.get(rn[i]) || !map2.get(rn[i])) return false;
+//   }
+
+//   return true;
+// };
+
+
+// With optimizations
 /**
- * @param {string} ransomNote
- * @param {string} magazine
+ * @param {string} rn
+ * @param {string} m
  * @return {boolean}
  */
 var canConstruct = function (rn, m) {
-  const map1 = new Map();
-  const map2 = new Map();
-
-  for (let i = 0; i < rn.length; i++) {
-    map1.set(rn[i], (map1.get(rn[i]) || 0) + 1);
+  for (const char of m) {
+    rn = rn.replace(char, "");
   }
 
-  for (let i = 0; i < m.length; i++) {
-    map2.set(m[i], (map2.get(m[i]) || 0) + 1);
-  }
-
-  for (let i = 0; i < rn.length; i++) {
-    if (map1.get(rn[i]) > map2.get(rn[i]) || !map2.get(rn[i])) return false;
-  }
-
-  return true;
+  return !rn;
 };
