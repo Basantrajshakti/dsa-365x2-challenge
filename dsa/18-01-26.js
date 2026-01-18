@@ -54,19 +54,37 @@ var firstUniqChar = function (s) {
 
 
 // With optimizations
+// /**
+//  * @param {string} s
+//  * @param {string} t
+//  * @return {character}
+//  */
+// var findTheDifference = function (s, t) {
+//   let sSum = 0;
+//   let tSum = 0;
+
+//   for (let i = 0; i < t.length; i++) {
+//     sSum = sSum + (s.charCodeAt(i) || 0);
+//     tSum = tSum + (t.charCodeAt(i) || 0);
+//   }
+
+//   return String.fromCharCode(tSum - sSum);
+// };
+
+
+// Further optimized
 /**
  * @param {string} s
  * @param {string} t
  * @return {character}
  */
 var findTheDifference = function (s, t) {
-  let sSum = 0;
-  let tSum = 0;
+  let result = 0;
 
   for (let i = 0; i < t.length; i++) {
-    sSum = sSum + (s.charCodeAt(i) || 0);
-    tSum = tSum + (t.charCodeAt(i) || 0);
+    result = result ^ (s.charCodeAt(i) || 0);
+    result = result ^ (t.charCodeAt(i) || 0);
   }
 
-  return String.fromCharCode(tSum - sSum);
+  return String.fromCharCode(result);
 };
