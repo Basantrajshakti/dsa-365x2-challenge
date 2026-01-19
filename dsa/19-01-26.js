@@ -17,9 +17,18 @@ var isSubsequence = function (s, t) {
 
 
 // 405. Convert a Number to Hexadecimal
-var toHex = function (num) {
-  if (num < 0)
-    num = 0xFFFFFFFF + num + 1;
+// var toHex = function (num) {
+//   if (num < 0)
+//     num = 0xFFFFFFFF + num + 1;
 
-  return num.toString(16);
+//   return num.toString(16);
+// };
+
+// With optimizations
+/**
+ * @param {number} num
+ * @return {string}
+ */
+var toHex = function (num) {
+  return (num >>> 0).toString(16);
 };
