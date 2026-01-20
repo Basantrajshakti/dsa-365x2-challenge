@@ -57,3 +57,26 @@ var longestPalindrome = function (s) {
 
   return sum;
 };
+
+// 412. Fizz Buzz
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function (n) {
+  let ans = [];
+
+  for (let i = 1; i <= n; i++) {
+    const isDivisibleBy3 = i % 3 === 0;
+    const isDivisibleBy5 = i % 5 === 0;
+    let str = '';
+
+    if (isDivisibleBy3) str += "Fizz";
+    if (isDivisibleBy5) str += "Buzz";
+    if (!str) str += i;
+
+    ans[i - 1] = str;
+  }
+
+  return ans;
+};
