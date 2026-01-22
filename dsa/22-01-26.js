@@ -65,3 +65,13 @@ var isHappy = function (n) {
 
   return true;
 };
+
+
+// 231. Power of Two
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfTwo = function (n) {
+  return Number.isInteger(Math.log2(n));
+};
