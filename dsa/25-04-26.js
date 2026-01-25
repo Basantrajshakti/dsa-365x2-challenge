@@ -20,3 +20,16 @@ var isPowerOfThree = function (n) {
 var isPowerOfThree = function (n) {
   return Number.isInteger(Math.log10(n) / Math.log10(3));
 };
+
+
+// 342. Power of Four
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+var isPowerOfFour = function (n) {
+  while (n >= 4) {
+    n = n / 4;
+  }
+  return n === 1
+};
