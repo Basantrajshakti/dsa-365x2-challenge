@@ -19,3 +19,12 @@ var arrangeCoins = function (n) {
 
   return r;
 };
+
+// With optimizations
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var arrangeCoins = function (n) {
+  return Math.floor(-0.5 + Math.sqrt(2 * n + 0.25));
+};
