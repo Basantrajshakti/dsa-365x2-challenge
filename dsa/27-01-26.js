@@ -28,3 +28,19 @@ var arrangeCoins = function (n) {
 var arrangeCoins = function (n) {
   return Math.floor(-0.5 + Math.sqrt(2 * n + 0.25));
 };
+
+
+// 492. Construct the Rectangle
+/**
+ * @param {number} area
+ * @return {number[]}
+ */
+var constructRectangle = function (area) {
+  const sr = Math.floor(Math.sqrt(area));
+
+  for (let i = sr; i >= 1; i--) {
+    if (Number.isInteger(area / i)) return [area / i, i];
+  }
+
+  return [area, 1]
+};
