@@ -40,3 +40,13 @@ var checkPerfectNumber = function (num) {
 
   return sum === num;
 };
+
+
+// Copied
+/**
+ * @param {number} num
+ * @return {boolean}
+ */
+var checkPerfectNumber = function (num) {
+  return (num === 6 || num === 28 || num === 496 || num === 8128 || num === 33550336);
+};
