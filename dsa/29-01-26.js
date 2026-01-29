@@ -28,3 +28,28 @@ var fib = function (n) {
 
   return fib(n - 1) + fib(n - 2);
 };
+
+
+
+// 598. Range Addition II
+/**
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
+ * @return {number}
+ */
+var maxCount = function (m, n, ops) {
+  if (ops.length === 0) {
+    return m * n;
+  }
+
+  let minRow = m;
+  let minCol = n;
+
+  for (let i = 0; i < ops.length; i++) {
+    minRow = Math.min(minRow, ops[i][0]);
+    minCol = Math.min(minCol, ops[i][1]);
+  }
+
+  return minRow * minCol;
+};
