@@ -21,3 +21,20 @@ var maximumProduct = function (nums) {
 
   return nums[len - 1] * nums[len - 2] * nums[len - 3];
 };
+
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumProduct = function (nums) {
+  const len = nums.length;
+  nums = nums.sort((a, b) => a - b);
+
+  const p1 = nums[len - 1] * nums[len - 2] * nums[len - 3];
+  const p2 = nums[0] * nums[1] * nums[len - 1];
+
+  if (p1 > p2) return p1;
+  return p2;
+};
