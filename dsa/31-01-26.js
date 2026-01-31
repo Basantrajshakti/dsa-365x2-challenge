@@ -47,3 +47,31 @@ var findLHS = function (nums) {
 
   return max;
 };
+
+
+// 643. Maximum Average Subarray I
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findMaxAverage = function (nums, k) {
+  let max = 0;
+  let last4sum = 0;
+
+  let i = 0;
+  while (i < k) {
+    last4sum += nums[i++];
+  }
+
+  max = last4sum;
+
+  while (i < nums.length) {
+    last4sum = last4sum - nums[i - k] + nums[i];
+
+    max = Math.max(max, last4sum);
+    i++
+  }
+
+  return max / k
+};
