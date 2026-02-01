@@ -34,3 +34,19 @@ var decrypt = function (code, k) {
   }
   return arr;
 };
+
+
+// 1876. Substrings of Size Three with Distinct Characters
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countGoodSubstrings = function (s) {
+  let ctr = 0;
+  for (let i = 0; i < s.length - 2; i++) {
+    const subStr = s.substring(i, i + 3);
+    if (new Set(subStr).size === 3) ctr++;
+  }
+
+  return ctr;
+};
