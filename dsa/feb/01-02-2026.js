@@ -50,3 +50,20 @@ var countGoodSubstrings = function (s) {
 
   return ctr;
 };
+
+// With optimizations
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var countGoodSubstrings = function (s) {
+  let ctr = 0;
+  for (let i = 0; i < s.length - 2; i++) {
+    const s1 = s[i];
+    const s2 = s[i + 1];
+    const s3 = s[i + 2];
+    if (s1 !== s2 && s2 !== s3 && s1 !== s3) ctr++;
+  }
+
+  return ctr;
+};
