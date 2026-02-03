@@ -42,3 +42,35 @@ var longestAlternatingSubarray = function (nums, threshold) {
 
   return maxLen;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @param {number} threshold
+ * @return {number}
+ */
+var longestAlternatingSubarray = function (nums, threshold) {
+  let result = 0;
+  let left = -1;
+
+  for (let right = 0; right < nums.length; right++) {
+    if (nums[right] > threshold) {
+      left = -1;
+      continue;
+    }
+
+    if (right > 0 && nums[right] % 2 === nums[right - 1] % 2) {
+      left = -1;
+    }
+
+    if (left < 0 && nums[right] % 2 === 0) {
+      left = right;
+    }
+
+    if (left >= 0) {
+      result = Math.max(result, right - left + 1);
+    }
+  }
+
+  return result;
+};
