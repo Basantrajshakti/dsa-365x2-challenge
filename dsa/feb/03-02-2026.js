@@ -74,3 +74,27 @@ var longestAlternatingSubarray = function (nums, threshold) {
 
   return result;
 };
+
+
+// 2932. Maximum Strong Pair XOR I
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumStrongPairXor = function (nums) {
+  let max = 0;
+  const len = nums.length;
+
+  for (let i = 0; i < len; i++) {
+    for (let j = i; j < len; j++) {
+      if (i !== j && Math.abs(nums[i] - nums[j]) <= Math.min(nums[i], nums[j])) {
+        const xor = nums[i] ^ nums[j];
+        if (xor > max) {
+          max = xor;
+        }
+      }
+    }
+  }
+
+  return max;
+};
