@@ -98,3 +98,28 @@ var maximumStrongPairXor = function (nums) {
 
   return max;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maximumStrongPairXor = function (nums) {
+  let max = 0;
+  const len = nums.length;
+
+  for (let i = 0; i < len; i++) {
+    for (let j = i; j < len; j++) {
+      const n1 = nums[i];
+      const n2 = nums[j];
+      if (i !== j && Math.abs(n1 - n2) <= Math.min(n1, n2)) {
+        const xor = n1 ^ n2;
+        if (xor > max) {
+          max = xor;
+        }
+      }
+    }
+  }
+
+  return max;
+};
