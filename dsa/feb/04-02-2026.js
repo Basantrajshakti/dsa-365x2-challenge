@@ -71,3 +71,27 @@ var minimumSubarrayLength = function (nums, k) {
 
   return min < 100 ? min : -1;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var minimumSubarrayLength = function (nums, k) {
+  let min = 100;
+  const len = nums.length;
+
+  for (let i = 0; i < len; i++) {
+    if (nums[i] >= k) return 1;
+
+    let or = nums[i];
+    for (let j = i + 1; j < len; j++) {
+      or |= nums[j];
+
+      if (or >= k) min = Math.min(min, j - i + 1)
+    }
+  }
+
+  return min < 100 ? min : -1;
+};
