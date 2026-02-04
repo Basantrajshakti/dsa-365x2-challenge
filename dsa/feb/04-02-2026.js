@@ -46,3 +46,28 @@ var maximumLengthSubstring = function (s) {
   }
   return longest;
 };
+
+
+// 3095. Shortest Subarray With OR at Least K I
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var minimumSubarrayLength = function (nums, k) {
+  let min = 100;
+  const len = nums.length;
+
+  for (let i = 0; i < len; i++) {
+    if (nums[i] >= k) return 1;
+
+    let or = nums[i];
+    for (let j = i; j < len; j++) {
+      or |= nums[j];
+
+      if (or >= k && j - i + 1 < min) min = j - i + 1
+    }
+  }
+
+  return min < 100 ? min : -1;
+};
