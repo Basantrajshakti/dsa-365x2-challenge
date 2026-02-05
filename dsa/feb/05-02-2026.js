@@ -63,3 +63,39 @@ var countKConstraintSubstrings = function (s, k) {
 
   return ctr;
 };
+
+
+// With optimizations
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
+var countKConstraintSubstrings = function (s, k) {
+  let l = 0
+  let count0 = 0
+  let count1 = 0
+  let res = 0
+
+  for (let r = 0; r < s.length; r++) {
+    if (s[r] === '0') {
+      count0++
+    } else {
+      count1++
+    }
+
+    // shrink window if invalid
+    while (count0 > k && count1 > k) {
+      if (s[l] === '0') {
+        count0--
+      } else {
+        count1--
+      }
+      l++
+    }
+    // all substring ending at r are valid
+    res += r - l + 1
+  }
+
+  return res
+}
