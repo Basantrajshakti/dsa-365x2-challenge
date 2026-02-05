@@ -36,3 +36,30 @@ var numberOfAlternatingGroups = function (colors) {
 
   return ctr;
 };
+
+
+// 3258. Count Substrings That Satisfy K-Constraint I
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {number}
+ */
+var countKConstraintSubstrings = function (s, k) {
+  let ctr = 0;
+  const len = s.length;
+
+  for (let i = 0; i < len; i++) {
+    let map = { '1': 0, '0': 0 };
+    for (let j = i; j < len; j++) {
+      map[s[j]]++;
+
+      if (map['1'] > k && map['0'] > k) {
+        break;
+      } else {
+        ctr++;
+      }
+    }
+  }
+
+  return ctr;
+};
