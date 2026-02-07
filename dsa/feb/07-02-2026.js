@@ -68,3 +68,21 @@ var distributeCandies = function (candyType) {
   if (set.size < len) return set.size;
   return len;
 };
+
+// With optimizations
+/**
+ * @param {number[]} candyType
+ * @return {number}
+ */
+var distributeCandies = function (candyType) {
+  let set = new Set();
+  let canEat = candyType.length / 2;
+
+  for (const candy of candyType) {
+    if (set.size === canEat) break;
+
+    set.add(candy);
+  }
+
+  return set.size;
+};
