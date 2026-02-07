@@ -54,3 +54,17 @@ var findWords = function (words) {
 
   return arr;
 }
+
+
+// 575. Distribute Candies
+/**
+ * @param {number[]} candyType
+ * @return {number}
+ */
+var distributeCandies = function (candyType) {
+  const len = candyType.length / 2;
+  const set = new Set(candyType);
+
+  if (set.size < len) return set.size;
+  return len;
+};
