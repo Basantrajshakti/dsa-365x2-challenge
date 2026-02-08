@@ -63,3 +63,25 @@ var findRestaurant = function (list1, list2) {
 
   return arr;
 };
+
+
+// 645. Set Mismatch
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findErrorNums = function (nums) {
+  const n = nums.length;
+  const expSum = n * (n + 1) / 2;
+  let dupNum = null;
+  const set = new Set();
+
+  let actualSum = nums.reduce((acc, curr) => {
+    if (!set.has(curr)) set.add(curr);
+    else dupNum = curr;
+
+    return acc + curr;
+  }, 0);
+
+  return [dupNum, expSum - actualSum + dupNum];
+};
