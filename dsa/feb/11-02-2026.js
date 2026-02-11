@@ -21,3 +21,31 @@ var uniqueMorseRepresentations = function (words) {
   }
   return set.size;
 };
+
+
+// 819. Most Common Word
+/**
+ * @param {string} paragraph
+ * @param {string[]} banned
+ * @return {string}
+ */
+var mostCommonWord = function (paragraph, banned) {
+  let pl = paragraph.toLowerCase().replaceAll(/[!?',;.]/g, ' ');
+
+  const map = new Map();
+  let max = 0, word = '';
+
+  pl.split(' ').forEach(w => {
+    if (w && w !== " " && !banned.includes(w)) {
+      let count = (map.get(w) || 0) + 1;
+
+      if (count > max) {
+        max = count;
+        word = w;
+      }
+      map.set(w, count);
+    }
+  })
+
+  return word;
+};
