@@ -49,3 +49,29 @@ var mostCommonWord = function (paragraph, banned) {
 
   return word;
 };
+
+// With optimizations
+/**
+ * @param {string} paragraph
+ * @param {string[]} banned
+ * @return {string}
+ */
+var mostCommonWord = function (paragraph, banned) {
+  const bannedSet = new Set(banned);
+  const wordCounts = {};
+  let mostFrequent = '';
+  let maxCount = 0;
+  const words = paragraph.toLowerCase().match(/\b\w+\b/g) || [];
+
+  for (const word of words) {
+    if (bannedSet.has(word)) continue;
+    wordCounts[word] = (wordCounts[word] || 0) + 1;
+
+    if (wordCounts[word] > maxCount) {
+      maxCount = wordCounts[word];
+      mostFrequent = word;
+    }
+  }
+
+  return mostFrequent;
+};
