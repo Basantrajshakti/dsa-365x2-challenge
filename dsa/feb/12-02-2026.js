@@ -25,3 +25,26 @@ var thirdMax = function (nums) {
 
   return max3;
 };
+
+
+// 455. Assign Cookies
+/**
+ * @param {number[]} g
+ * @param {number[]} s
+ * @return {number}
+ */
+var findContentChildren = function (g, s) {
+  g.sort((a, b) => a - b);
+  s.sort((a, b) => a - b);
+
+  let i = 0, j = 0;
+  while (i < g.length && j < s.length) {
+    if (g[i] > s[j]) j++;
+    else {
+      i++;
+      j++;
+    }
+  }
+
+  return i;
+};
