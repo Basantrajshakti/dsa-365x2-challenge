@@ -77,3 +77,27 @@ var sortArrayByParityII = function (nums) {
   }
   return nums;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortArrayByParityII = function (nums) {
+  const n = nums.length;
+  let even = 0, odd = 1;
+
+  while (even < n && odd < n) {
+    if (nums[even] % 2 === 0) even += 2;
+    else if (nums[odd] % 2 !== 0) odd += 2;
+    else {
+      const temp = nums[even];
+      nums[even] = nums[odd];
+      nums[odd] = temp;
+      even += 2;
+      odd += 2;
+    }
+  }
+
+  return nums;
+};
