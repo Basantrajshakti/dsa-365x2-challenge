@@ -50,3 +50,30 @@ var sortArrayByParity = function (nums) {
   }
   return nums;
 };
+
+
+// 922. Sort Array By Parity II
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortArrayByParityII = function (nums) {
+  const evens = [], odds = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 === 0) {
+      evens.push(nums[i]);
+    } else {
+      odds.push(nums[i]);
+    }
+  }
+  let even = 0, odd = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (i % 2 === 0) {
+      nums[i] = evens[even++];
+    } else {
+      nums[i] = odds[odd++];
+    }
+  }
+  return nums;
+};
