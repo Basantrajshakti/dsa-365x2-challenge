@@ -31,3 +31,26 @@ var sortedSquares = function (nums) {
 
   return nums;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortedSquares = function (nums) {
+  const len = nums.length;
+  const arr = new Array(len);
+  let l = 0, r = len - 1, i = len - 1;
+
+  while (l <= r) {
+    if (Math.abs(nums[l]) > Math.abs(nums[r])) {
+      arr[i--] = nums[l] * nums[l];
+      l++;
+    } else {
+      arr[i--] = nums[r] * nums[r];
+      r--;
+    }
+  }
+
+  return arr;
+};
