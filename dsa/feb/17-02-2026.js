@@ -44,3 +44,21 @@ var pivotIndex = function (nums) {
   }
   return -1;
 };
+
+
+// 1413. Minimum Value to Get Positive Step by Step Sum
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minStartValue = function (nums) {
+  let minVal = 0;
+  let total = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    total += nums[i];
+    if (total < minVal) minVal = total;
+  }
+
+  return -minVal + 1;
+};
