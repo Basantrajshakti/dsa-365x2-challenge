@@ -19,3 +19,28 @@ var pivotIndex = function (nums) {
 
   return -1;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var pivotIndex = function (nums) {
+  const n = nums.length;
+  let totalSum = 0;
+
+  for (let i = 0; i < n; i++) {
+    totalSum += nums[i];
+  }
+
+  let left = 0, right = totalSum;
+
+  for (let i = 0; i < n; i++) {
+    right -= nums[i];
+
+    if (left === right) return i;
+
+    left += nums[i];
+  }
+  return -1;
+};
