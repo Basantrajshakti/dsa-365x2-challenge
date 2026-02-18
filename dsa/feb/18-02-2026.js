@@ -49,3 +49,23 @@ var maxScore = function (s) {
 
   return max;
 };
+
+
+// 1588. Sum of All Odd Length Subarrays
+/**
+ * @param {number[]} arr
+ * @return {number}
+ */
+var sumOddLengthSubarrays = function (arr) {
+  // In total, there are k = (i + 1) * (n - i) subarrays, that contains A[i].
+  // And there are k / 2 subarrays with odd length, that contains A[i].
+  // And there are k / 2 subarrays with even length, that contains A[i].
+  // A[i] will be counted ceil((i + 1) * (n - i) / 2) times for our question.
+
+  let sum = 0, len = arr.length;
+
+  for (let i = 0; i < len; i++)
+    sum += Math.ceil((i + 1) * (len - i) / 2) * arr[i];
+
+  return sum;
+};
