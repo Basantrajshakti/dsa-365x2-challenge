@@ -28,3 +28,24 @@ var maxScore = function (s) {
 
   return max;
 };
+
+// With optimizations
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var maxScore = function (s) {
+  let max = 0, sum0 = 0, sum1 = 0;
+
+  for (const n of s) {
+    if (n === '1') sum1 += 1;
+  }
+
+  for (let i = 0; i < s.length - 1; i++) {
+    if (s[i] === '0') sum0 += 1;
+    else sum1 -= 1;
+    max = Math.max(max, sum0 + sum1);
+  }
+
+  return max;
+};
