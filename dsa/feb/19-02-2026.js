@@ -15,3 +15,32 @@ var largestAltitude = function (gain) {
 
   return max;
 };
+
+
+// 1854. Maximum Population Year
+/**
+ * @param {number[][]} logs
+ * @return {number}
+ */
+var maximumPopulation = function (logs) {
+  const s = new Uint8Array(101);
+  const e = new Uint8Array(101);
+
+  for (const [rs, re] of logs) {
+    s[rs - 1950]++;
+    e[re - 1950]++;
+  }
+
+  let noOfPeople = 0, maxNoOfPeople = 0, maxYear = undefined;
+  for (let i = 0; i <= 100; i++) {
+    noOfPeople += s[i];
+    noOfPeople -= e[i];
+
+    if (noOfPeople > maxNoOfPeople) {
+      maxNoOfPeople = noOfPeople;
+      maxYear = i;
+    }
+  }
+
+  return maxYear + 1950;
+};
