@@ -43,3 +43,24 @@ var findMiddleIndex = function (nums) {
 
   return -1;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMiddleIndex = function (nums) {
+  const len = nums.length;
+  let rSum = 0, lSum = 0;
+
+  for (let i = 0; i < len; i++) {
+    rSum += nums[i];
+  }
+
+  for (let i = 0; i < len; i++) {
+    if (lSum === rSum - lSum - nums[i]) return i;
+    lSum += nums[i];
+  }
+
+  return -1;
+};
