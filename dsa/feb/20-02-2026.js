@@ -21,5 +21,25 @@ var isCovered = function (ranges, left, right) {
   }
 
   return true;
+};
 
+
+// 1991. Find the Middle Index in Array
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMiddleIndex = function (nums) {
+  const pSum = [nums[0]];
+  const len = nums.length;
+
+  for (let i = 1; i < len; i++) {
+    pSum[i] = nums[i] + pSum[i - 1];
+  }
+
+  for (let i = 0; i < len; i++) {
+    if ((pSum[i - 1] || 0) === pSum[len - 1] - pSum[i]) return i;
+  }
+
+  return -1;
 };
