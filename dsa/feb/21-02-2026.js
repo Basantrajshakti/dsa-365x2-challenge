@@ -24,3 +24,38 @@ var answerQueries = function (nums, queries) {
 
   return ans;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @param {number[]} queries
+ * @return {number[]}
+ */
+var answerQueries = function (nums, queries) {
+  nums.sort((a, b) => a - b);
+  const ans = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = nums[i] + (nums[i - 1] || 0);
+  }
+
+  for (let i = 0; i < queries.length; i++) {
+    let value = binarySearch(nums, queries[i]);
+    ans.push(value);
+  }
+  return ans;
+};
+
+var binarySearch = function (nums, target) {
+  let left = 0;
+  let right = nums.length;
+
+  while (left < right) {
+    let mid = Math.floor((left + right) / 2);
+
+    if (nums[mid] <= target) left = mid + 1;
+    else right = mid;
+  }
+
+  return left;
+}
