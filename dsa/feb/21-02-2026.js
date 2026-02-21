@@ -59,3 +59,28 @@ var binarySearch = function (nums, target) {
 
   return left;
 }
+
+
+// 2485. Find the Pivot Integer
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var pivotInteger = function (n) {
+  if (n == 1) return 1;
+
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+
+  let newSum = 1;
+  for (let i = 2; i <= n; i++) {
+    if (sum - (newSum + i) == newSum) {
+      return i
+    };
+    newSum += i
+  }
+
+  return -1;
+};
