@@ -113,3 +113,14 @@ var pivotInteger = function (n) {
 
   return -1
 };
+
+// Better optimizations
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var pivotInteger = function (n) {
+  let sum = (n + 1) * n / 2;
+  let pivot = Math.floor(Math.sqrt(sum));
+  return pivot * pivot == sum ? pivot : -1;
+};
