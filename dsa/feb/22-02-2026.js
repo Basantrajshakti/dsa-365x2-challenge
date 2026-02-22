@@ -73,3 +73,25 @@ var numberOfPoints = function (nums) {
 
   return ctr;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} nums
+ * @return {number}
+ */
+var numberOfPoints = function (nums) {
+  const arr = new Uint8Array(102);
+
+  for (let i = 0; i < nums.length; i++) {
+    arr[nums[i][0]]++;
+    arr[nums[i][1] + 1]--;
+  }
+
+  let res = 0;
+  for (let i = 1; i < 102; i++) {
+    arr[i] += arr[i - 1];
+    if (arr[i] > 0) res++;
+  }
+
+  return res;
+};
