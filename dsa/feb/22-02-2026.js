@@ -47,3 +47,29 @@ var leftRightDifference = function (nums) {
 
   return ans;
 };
+
+
+// 2848. Points That Intersect With Cars
+/**
+ * @param {number[][]} nums
+ * @return {number}
+ */
+var numberOfPoints = function (nums) {
+  const arr = new Uint8Array(101);
+
+  for (let i = 0; i < nums.length; i++) {
+    let l = nums[i][0];
+    let r = nums[i][1];
+
+    while (l <= r) {
+      arr[l++]++
+    }
+  }
+
+  let ctr = 0;
+  for (let i = 1; i <= 101; i++) {
+    if (arr[i]) ctr++;
+  }
+
+  return ctr;
+};
