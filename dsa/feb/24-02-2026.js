@@ -20,3 +20,24 @@ var subarraySum = function (nums) {
 
   return sum;
 };
+
+// 3432. Count Partitions with Even Sum Difference
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var countPartitions = function (nums) {
+  let lSum = 0, ctr = 0, rSum = nums.reduce((a, b) => a + b, 0);
+
+  for (let i = 0; i < nums.length - 1; i++) {
+    lSum += nums[i];
+    rSum -= nums[i];
+
+    const d = lSum - rSum;
+    if (d % 2 === 0) {
+      ctr++;
+    }
+  }
+
+  return ctr;
+};
