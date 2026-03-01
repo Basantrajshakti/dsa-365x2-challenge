@@ -53,3 +53,19 @@ function reverseList(head) {
   }
   return pre;
 }
+
+// With optimization
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+var isPalindrome = function (head) {
+  let str = '', revStr = '';
+
+  while (head !== null) {
+    str += head.val;
+    revStr = head.val + revStr;
+    head = head.next;
+  }
+  return str === revStr;
+};
