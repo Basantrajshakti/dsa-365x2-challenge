@@ -52,3 +52,70 @@ var minimumPairRemoval = function (nums) {
   }
   return ans;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minimumPairRemoval = function (nums) {
+  let count = 0;
+  while (nums.length > 1) {
+    let ascending = true;
+    let minSum = Infinity;
+    let targetIdx = -1;
+
+    for (let i = 0; i < nums.length - 1; i++) {
+      let sum = nums[i] + nums[i + 1];
+      if (nums[i] > nums[i + 1]) {
+        ascending = false;
+      }
+      if (sum < minSum) {
+        minSum = sum;
+        targetIdx = i;
+      }
+    }
+    if (ascending) {
+      break;
+    }
+
+    count++;
+    nums[targetIdx] = minSum;
+    nums.splice(targetIdx + 1, 1);
+  }
+  return count;
+};
+
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var minimumPairRemoval = function (nums) {
+  let count = 0;
+  while (nums.length > 1) {
+    let ascending = true;
+    let minSum = Infinity;
+    let targetIdx = -1;
+
+    for (let i = 0; i < nums.length - 1; i++) {
+      let sum = nums[i] + nums[i + 1];
+      if (nums[i] > nums[i + 1]) {
+        ascending = false;
+      }
+      if (sum < minSum) {
+        minSum = sum;
+        targetIdx = i;
+      }
+    }
+    if (ascending) {
+      break;
+    }
+
+    count++;
+    nums[targetIdx] = minSum;
+    nums.splice(targetIdx + 1, 1);
+  }
+  return count;
+};
