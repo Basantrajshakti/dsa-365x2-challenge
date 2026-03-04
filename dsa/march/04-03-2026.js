@@ -23,3 +23,24 @@ var islandPerimeter = function (grid) {
   }
   return perimeter;
 };
+
+
+// 485. Max Consecutive Ones
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findMaxConsecutiveOnes = function (nums) {
+  let ctr = 0, max = 0;
+
+  for (let num of nums) {
+    if (num === 1) {
+      ctr++;
+      max = Math.max(max, ctr);
+    } else {
+      ctr = 0;
+    }
+  }
+
+  return max;
+}
