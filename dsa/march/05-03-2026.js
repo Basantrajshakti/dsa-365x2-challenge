@@ -20,3 +20,25 @@ var findPoisonedDuration = function (timeSeries, duration) {
   total += duration;
   return total;
 };
+
+
+// 605. Can Place Flowers
+/**
+ * @param {number[]} flowerbed
+ * @param {number} n
+ * @return {boolean}
+ */
+var canPlaceFlowers = function (flowerbed, n) {
+  for (let i = 0; i < flowerbed.length; i++) {
+
+    let left = i === 0 ? 0 : flowerbed[i - 1];
+    let right = i === flowerbed.length - 1 ? 0 : flowerbed[i + 1];
+
+    if (!left && !right && !flowerbed[i]) {
+      n--;
+      i++; // or flowerbed[i] = 1;
+    }
+  }
+
+  return n <= 0;
+};
