@@ -45,3 +45,31 @@ var matrixReshape = function (mat, r, c) {
 
   return rmat;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+var matrixReshape = function (mat, r, c) {
+  const m = mat.length;
+  const n = mat[0].length;
+
+  if (m * n !== r * c) return mat;
+
+  let rmat = [], flat = [];
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      flat.push(mat[i][j])
+    }
+  }
+
+  for (let i = 0; i < r; i++) {
+    rmat.push(flat.slice(i * c, (i + 1) * c));
+  }
+
+  return rmat;
+};
