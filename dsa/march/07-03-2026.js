@@ -66,3 +66,23 @@ var imageSmoother = function (img) {
 
   return result;
 };
+
+
+// 674. Longest Continuous Increasing Subsequence
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findLengthOfLCIS = function (nums) {
+  let maxCtr = 0, ctr = 1;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i + 1] > nums[i]) ctr++;
+    else {
+      if (ctr > maxCtr) maxCtr = ctr;
+      ctr = 1;
+    }
+  }
+
+  return maxCtr;
+};
