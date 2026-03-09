@@ -66,3 +66,22 @@ var findShortestSubArray = function (nums) {
 
   return minLen;
 };
+
+
+// 717. 1-bit and 2-bit Characters
+/**
+ * @param {number[]} bits
+ * @return {boolean}
+ */
+
+var isOneBitCharacter = function (bits) {
+  const len = bits.length;
+
+  for (let i = 0; i < len; i++) {
+    if (bits[i] == 0 && i === len - 1) return true;
+
+    if (bits[i] == 1) i++;
+  }
+
+  return false;
+};
