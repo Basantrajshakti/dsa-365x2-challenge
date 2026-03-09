@@ -33,3 +33,36 @@ var findShortestSubArray = function (nums) {
 
   return minLength;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findShortestSubArray = function (nums) {
+  const count = {};
+  const first = {};
+  const last = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+
+    if (first[num] === undefined) {
+      first[num] = i;
+    }
+
+    last[num] = i;
+    count[num] = (count[num] || 0) + 1;
+  }
+
+  let degree = Math.max(...Object.values(count));
+  let minLen = nums.length;
+
+  for (let num in count) {
+    if (count[num] === degree) {
+      minLen = Math.min(minLen, last[num] - first[num] + 1);
+    }
+  }
+
+  return minLen;
+};
