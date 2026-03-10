@@ -41,3 +41,22 @@ var nextGreatestLetter = function (letters, target) {
   }
   return ans;
 };
+
+// 746. Min Cost Climbing Stairs
+/**
+ * @param {number[]} cost
+ * @return {number}
+ */
+var minCostClimbingStairs = function (cost) {
+  const n = cost.length;
+  let dp = 0, dp1 = 0, dp2 = 0;
+
+  for (let i = 2; i <= n; i++) {
+    const oneStep = dp1 + cost[i - 1];
+    const twoStep = dp2 + cost[i - 2];
+    dp = Math.min(oneStep, twoStep);
+    dp2 = dp1;
+    dp1 = dp;
+  }
+  return dp1;
+};
