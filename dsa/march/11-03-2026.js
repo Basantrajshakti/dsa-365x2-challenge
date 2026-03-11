@@ -31,3 +31,28 @@ var bitwiseComplement = function (n) {
   const mask = (1 << bitLength) - 1;
   return n ^ mask;
 };
+
+
+// 806. Number of Lines To Write String
+/**
+ * @param {number[]} widths
+ * @param {string} s
+ * @return {number[]}
+ */
+var numberOfLines = function (widths, s) {
+  let count = 0, ctr = 1;
+
+  for (const c of s) {
+    const idx = c.charCodeAt(0) - 97;
+    const w = widths[idx];
+
+    if (count + w > 100) {
+      count = w;
+      ctr++;
+    } else {
+      count += w;
+    }
+  }
+
+  return [ctr, count];
+};
