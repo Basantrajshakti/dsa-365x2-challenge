@@ -43,3 +43,39 @@ var flipAndInvertImage = function (image) {
 var flipAndInvertImage = function (image) {
   return image.map(arr => arr.reverse().map(val => val === 1 ? 0 : 1));
 };
+
+
+// 860. Lemonade Change
+/**
+ * @param {number[]} bills
+ * @return {boolean}
+ */
+var lemonadeChange = function (bills) {
+  let five = 0;
+  let ten = 0;
+
+  for (let bill of bills) {
+    if (bill === 5) {
+      five++;
+    }
+
+    else if (bill === 10) {
+      if (five === 0) return false;
+      ten++;
+      five--;
+    }
+    else {
+      if (ten > 0 && five > 0) {
+        ten--;
+        five--;
+      }
+      else if (five >= 3) {
+        five -= 3;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  return true;
+};
