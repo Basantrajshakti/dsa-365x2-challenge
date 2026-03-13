@@ -34,3 +34,12 @@ var flipAndInvertImage = function (image) {
     return arr.reverse().map(val => val === 1 ? 0 : 1);
   });
 };
+
+// One line
+/**
+ * @param {number[][]} image
+ * @return {number[][]}
+ */
+var flipAndInvertImage = function (image) {
+  return image.map(arr => arr.reverse().map(val => val === 1 ? 0 : 1));
+};
