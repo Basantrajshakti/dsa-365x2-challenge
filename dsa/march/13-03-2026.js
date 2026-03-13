@@ -23,3 +23,14 @@ var flipAndInvertImage = function (image) {
   return image;
 
 };
+
+// With optimizations
+/**
+ * @param {number[][]} image
+ * @return {number[][]}
+ */
+var flipAndInvertImage = function (image) {
+  return image.map(arr => {
+    return arr.reverse().map(val => val === 1 ? 0 : 1);
+  });
+};
