@@ -32,3 +32,23 @@ var projectionArea = function (grid) {
 
   return top + front + side;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var projectionArea = function (grid) {
+  let res = 0;
+  for (let i = 0; i < grid.length; i++) {
+    let rowMax = 0;
+    let colMax = 0;
+    for (let j = 0; j < grid.length; j++) {
+      if (grid[i][j]) res += 1;
+      rowMax = Math.max(rowMax, grid[i][j]);
+      colMax = Math.max(colMax, grid[j][i]);
+    }
+    res += rowMax + colMax;
+  }
+  return res;
+};
