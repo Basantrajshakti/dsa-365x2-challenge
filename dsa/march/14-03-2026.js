@@ -52,3 +52,32 @@ var projectionArea = function (grid) {
   }
   return res;
 };
+
+
+// 892. Surface Area of 3D Shapes
+/**
+ * @param {number[][]} grid
+ * @return {number}
+ */
+var surfaceArea = function (grid) {
+  const N = grid.length;
+  const UNIT_CUBE = 1;
+  const LATERAL_FACES = (4 * UNIT_CUBE);
+  const BASE_FACES = (2 * UNIT_CUBE);
+  let s = 0;
+
+  for (let i = 0; i < N; i++) {
+    for (let j = 0; j < N; j++) {
+      if (grid[i][j] > 0) {
+        s += (grid[i][j] * LATERAL_FACES) + BASE_FACES;
+
+        if (i > 0)
+          s -= Math.min(grid[i][j], grid[i - 1][j]) * (2 * UNIT_CUBE);
+        if (j > 0)
+          s -= Math.min(grid[i][j], grid[i][j - 1]) * (2 * UNIT_CUBE);
+      }
+    }
+  }
+
+  return s;
+};
