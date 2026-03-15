@@ -27,3 +27,12 @@ var repeatedSubstringPattern = function (s) {
   const sub = doubled.slice(1, -1);
   return sub.includes(s);
 };
+
+// One liner
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var repeatedSubstringPattern = function (s) {
+  return s.repeat(2).slice(1, -1).includes(s);
+};
