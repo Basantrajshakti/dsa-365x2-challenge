@@ -49,3 +49,24 @@ var countLargestGroup = function (n) {
   }
   return result;
 };
+
+// With optimizations
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var countLargestGroup = function (n) {
+  const freq = Array(37).fill(0)
+  let maxi = 0, ans = 0
+  for (let i = 1; i <= n; i++) {
+    let tmp = i, tot = 0
+    while (tmp) {
+      tot += tmp % 10
+      tmp = Math.floor(tmp / 10)
+    }
+    freq[tot]++
+    if (freq[tot] > maxi) [maxi, ans] = [freq[tot], 1]
+    else if (freq[tot] === maxi) ans++
+  }
+  return ans
+}
