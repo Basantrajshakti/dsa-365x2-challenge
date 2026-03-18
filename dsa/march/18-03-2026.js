@@ -1,0 +1,27 @@
+// Daily challange
+
+// 3070. Count Submatrices with Top-Left Element and Sum Less Than k
+/**
+ * @param {number[][]} grid
+ * @param {number} k
+ * @return {number}
+ */
+var countSubmatrices = function (grid, k) {
+  const m = grid.length;
+  const n = grid[0].length;
+  const dp = new Array(n).fill(0);
+  let count = 0;
+  for (let i = 0; i < m; i++) {
+    let currRowSum = 0;
+    for (let j = 0; j < n; j++) {
+      currRowSum += grid[i][j];
+      dp[j] += currRowSum;
+      if (dp[j] <= k) {
+        count++;
+      } else {
+        break;
+      }
+    }
+  }
+  return count;
+};
