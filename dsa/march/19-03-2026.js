@@ -30,3 +30,22 @@ var numberOfSubmatrices = function (grid) {
   }
   return count;
 };
+
+// 482. License Key Formatting
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var licenseKeyFormatting = function (s, k) {
+  const chars = s.replaceAll('-', '').toUpperCase();
+
+  const firstk = chars.length % k || k;
+
+  let result = chars.slice(0, firstk);
+  for (let i = firstk; i < chars.length; i += k) {
+    result += '-' + chars.slice(i, i + k);
+  }
+
+  return result;
+};
