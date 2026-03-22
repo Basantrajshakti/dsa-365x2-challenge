@@ -69,3 +69,28 @@ var findRotation = function (mat, target) {
 
   return res[0] || res[1] || res[2] || res[3];
 };
+
+
+// 1758. Minimum Changes To Make Alternating Binary String
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minOperations = function (s) {
+  const help = (s, ch) => {
+    let ans = 0;
+    const n = s.length;
+
+    for (let i = 0; i < n; i++) {
+      if (i % 2 === 0 && s[i] !== ch) ans++;
+      else if (i % 2 === 1 && s[i] === ch) ans++;
+    }
+
+    return ans;
+  };
+
+  const opt1 = help(s, '0');
+  const opt2 = help(s, '1');
+
+  return Math.min(opt1, opt2);
+};
