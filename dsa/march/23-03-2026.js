@@ -73,3 +73,41 @@ var numSpecial = function (mat) {
 
   return ans;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} mat
+ * @return {number}
+ */
+var numSpecial = function (mat) {
+  let m = mat.length;
+  let n = mat[0].length;
+  let ans = 0;
+
+  for (let i = 0; i < m; i++) {
+    let rowones = 0;
+    let colidx = -1;
+
+    for (let j = 0; j < n; j++) {
+      if (mat[i][j] === 1) {
+        rowones++;
+        colidx = j;
+      }
+    }
+
+    if (rowones === 1) {
+      let colones = 0;
+      for (let k = 0; k < m; k++) {
+        if (mat[k][colidx] === 1) {
+          colones++;
+        }
+      }
+
+      if (colones === 1) {
+        ans++;
+      }
+    }
+  }
+
+  return ans;
+};
