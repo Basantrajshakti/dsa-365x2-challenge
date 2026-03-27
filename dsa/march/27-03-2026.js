@@ -27,3 +27,31 @@ var areSimilar = function (mat, k) {
 
   return true;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} mat
+ * @param {number} k
+ * @return {boolean}
+ */
+var areSimilar = function (mat, k) {
+  const rows = mat.length;
+  const cols = mat[0].length;
+  k %= cols;
+
+  for (let row = 0; row < rows; row++) {
+    for (let col = 0; col < cols; col++) {
+      // Determine the shift for the given row
+      // Remem to covert left shifts to right shifts to simplify things
+      const shift = row % 2 ? cols - k : k;
+      // In order for the matrix to be simi after the shift, the value in the 
+      // orig col and the val in the shifted col need to be the same.
+      // The orig val will be written to the shifted ind and it needs to be 
+      // 
+      const newCol = (col + k) % cols;
+      if (mat[row][newCol] != mat[row][col]) return false;
+    }
+  }
+
+  return true;
+};
