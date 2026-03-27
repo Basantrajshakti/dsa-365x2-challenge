@@ -55,3 +55,24 @@ var areSimilar = function (mat, k) {
 
   return true;
 };
+
+
+// 1680. Concatenation of Consecutive Binary Numbers
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var concatenatedBinary = function (n) {
+  let bitlen = 1n;
+  let next = 2n; //where the bit length will change
+  let mod = 1000000007n;
+  let ans = 0n;
+  for (let i = 1n; i <= BigInt(n); i++) {
+    if (i == next) {
+      bitlen += 1n;//increase the bit length by 1 when i reaches to 2's power 
+      next = next * 2n;
+    }
+    ans = ((ans << bitlen) + i) % mod;
+  }
+  return Number(ans);
+};
