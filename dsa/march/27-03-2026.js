@@ -76,3 +76,18 @@ var concatenatedBinary = function (n) {
   }
   return Number(ans);
 };
+
+// With optimizations
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var concatenatedBinary = function (n) {
+  let mul = 2, result = 1, mod = 10 ** 9 + 7
+  for (let i = 2; i <= n; i++) {
+    if (i === mul) mul <<= 1;
+    result = (result * mul + i) % mod;
+  }
+
+  return result
+};
