@@ -47,3 +47,30 @@ var findTheString = function (lcp) {
 
   return word.join("");
 };
+
+
+// 541. Reverse String II
+/**
+ * @param {string} s
+ * @param {number} k
+ * @return {string}
+ */
+var reverseStr = function (s, k) {
+
+  const n = s.length;
+  s = [...s]; // we convert string to array for in-place mutation
+
+  for (let i = 0; i < n; i += 2 * k) {
+    // we reverse the first k characters in the current 2k block
+    let left = i;
+    let right = Math.min(i + k - 1, n - 1);
+
+    while (left < right) {
+      [s[left], s[right]] = [s[right], s[left]];
+      left++;
+      right--;
+    }
+  }
+
+  return s.join(""); // we convert array back to string
+};
