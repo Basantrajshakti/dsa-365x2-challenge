@@ -46,3 +46,28 @@ var canBeEqual = function (s1, s2) {
       s1[1] == s2[3] && s1[3] == s2[1]
     );
 };
+
+
+// 551. Student Attendance Record I
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var checkRecord = function (s) {
+  let aCount = 0, lStreak = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (c === 'A') {
+      aCount++;
+      if (aCount >= 2) return false;
+    }
+
+    if (c === 'L') {
+      lStreak++;
+      if (lStreak >= 3) return false;
+    } else {
+      lStreak = 0;
+    }
+  }
+  return true;
+};
