@@ -15,7 +15,7 @@ const checkStrings = (s1, s2) => {
     freq[s2.charCodeAt(i) - 97 + off]--;
   }
 
-  return freq.every(c => c === 0);
+  return freq.every((c) => c === 0);
 };
 
 // With optimizations
@@ -25,10 +25,14 @@ const checkStrings = (s1, s2) => {
  * @return {boolean}
  */
 const checkStrings = (s1, s2) => {
-  let eX = 0, oX = 0, eS = 0, oS = 0;
+  let eX = 0,
+    oX = 0,
+    eS = 0,
+    oS = 0;
 
   for (let i = 0; i < s1.length; i++) {
-    const v1 = s1.charCodeAt(i), v2 = s2.charCodeAt(i);
+    const v1 = s1.charCodeAt(i),
+      v2 = s2.charCodeAt(i);
     const dx = v1 ^ v2;
     const ds = v1 * v1 - v2 * v2;
 
@@ -42,4 +46,24 @@ const checkStrings = (s1, s2) => {
   }
 
   return !(eX | oX | eS | oS);
+};
+
+// 557. Reverse Words in a String III
+/**
+ * @param {string} s
+ * @return {string}
+ */
+var reverseWords = function (s) {
+  let res = "";
+  let word = "";
+
+  for (let c of s) {
+    if (c === " ") {
+      res += word + c;
+      word = "";
+    } else {
+      word = c + word;
+    }
+  }
+  return res + word;
 };
