@@ -17,3 +17,29 @@ const checkStrings = (s1, s2) => {
 
   return freq.every(c => c === 0);
 };
+
+// With optimizations
+/**
+ * @param {string} s1
+ * @param {string} s2
+ * @return {boolean}
+ */
+const checkStrings = (s1, s2) => {
+  let eX = 0, oX = 0, eS = 0, oS = 0;
+
+  for (let i = 0; i < s1.length; i++) {
+    const v1 = s1.charCodeAt(i), v2 = s2.charCodeAt(i);
+    const dx = v1 ^ v2;
+    const ds = v1 * v1 - v2 * v2;
+
+    if (i & 1) {
+      oX ^= dx;
+      oS += ds;
+    } else {
+      eX ^= dx;
+      eS += ds;
+    }
+  }
+
+  return !(eX | oX | eS | oS);
+};
