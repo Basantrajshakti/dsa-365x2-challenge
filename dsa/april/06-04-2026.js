@@ -37,3 +37,20 @@ var robotSim = function (commands, obstacles) {
 
   return res;
 };
+
+// 771. Jewels and Stones
+/**
+ * @param {string} jewels
+ * @param {string} stones
+ * @return {number}
+ */
+var numJewelsInStones = function (jewels, stones) {
+  const set = new Set(jewels);
+  let ctr = 0;
+
+  for (const char of stones) {
+    if (set.has(char)) ctr++;
+  }
+
+  return ctr;
+};
