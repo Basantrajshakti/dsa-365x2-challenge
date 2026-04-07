@@ -43,3 +43,16 @@ Robot.prototype.getDir = function () {
   if (p < 2 * this.w + this.h - 2) return "West";
   return "South";
 };
+
+// 796. Rotate String
+/**
+ * @param {string} s
+ * @param {string} goal
+ * @return {boolean}
+ */
+var rotateString = function (s, goal) {
+  if (s.length !== goal.length) {
+    return false;
+  }
+  return (s + s).includes(goal);
+};
