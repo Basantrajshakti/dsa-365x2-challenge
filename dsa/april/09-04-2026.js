@@ -61,3 +61,25 @@ var xorAfterQueries = function (nums, queries) {
   for (let i = 0; i < n; i++) ans ^= Number((numL[i] * factors[i]) % MOD);
   return ans;
 };
+
+// 14. Longest Common Prefix
+/**
+ * @param {string[]} strs
+ * @return {string}
+ */
+var longestCommonPrefix = function (strs) {
+  if (strs.length == 0) return "";
+  if (strs.length === 1) return strs[0];
+
+  let commonPrefix = strs[0];
+
+  for (let i = 1; i < strs.length; i++) {
+    while (strs[i].indexOf(commonPrefix) !== 0) {
+      commonPrefix = commonPrefix.substring(0, commonPrefix.length - 1);
+
+      if (commonPrefix == "") return "";
+    }
+  }
+
+  return commonPrefix;
+};
