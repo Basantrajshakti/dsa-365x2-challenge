@@ -25,3 +25,18 @@ var minimumDistance = function (nums) {
 
   return res === Infinity ? -1 : res;
 };
+
+// 26. Remove Duplicates from Sorted Array
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function (nums) {
+  let i = 1;
+  for (let j = 1; j < nums.length; j++) {
+    if (nums[i - 1] !== nums[j]) {
+      nums[i++] = nums[j];
+    }
+  }
+  return i;
+};
