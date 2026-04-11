@@ -25,3 +25,19 @@ var minimumDistance = function (nums) {
 
   return minDist === Infinity ? -1 : 2 * minDist;
 };
+
+// 27. Remove Element
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function (nums, val) {
+  let i = 0;
+  for (let j = 0; j < nums.length; j++) {
+    if (val !== nums[j]) {
+      nums[i++] = nums[j];
+    }
+  }
+  return i;
+};
