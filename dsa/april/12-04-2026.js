@@ -29,3 +29,29 @@ var minimumDistance = function (word) {
 
   return Math.min(...dp);
 };
+
+// 35. Search Insert Position
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function (nums, target) {
+  let low = 0;
+  let high = nums.length - 1;
+
+  while (1) {
+    let mid = parseInt(low + (high - low) / 2);
+    const num = nums[mid];
+
+    if (num === target) {
+      return mid;
+    } else if (num > target) {
+      high = mid - 1;
+    } else if (num < target) {
+      low = mid + 1;
+    }
+
+    if (low > high) return low;
+  }
+};
