@@ -28,3 +28,26 @@ var solveQueries = function (nums, queries) {
 
   return queries.map((q) => (dp[q] === n ? -1 : dp[q]));
 };
+
+// 118. Pascal's Triangle
+/**
+ * @param {number} numRows
+ * @return {number[][]}
+ */
+var generate = function (numRows) {
+  let rows = [[1]];
+
+  if (numRows === 1) return rows;
+
+  for (let i = 0; i < numRows - 1; i++) {
+    const tempRow = [0, ...rows[rows.length - 1], 0];
+    const row = [];
+
+    for (let j = 0; j < tempRow.length - 1; j++) {
+      row.push(tempRow[j] + tempRow[j + 1]);
+    }
+    rows.push(row);
+  }
+
+  return rows;
+};
