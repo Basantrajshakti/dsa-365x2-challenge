@@ -29,3 +29,21 @@ var minMirrorPairDistance = function (nums) {
 
   return mini === Infinity ? -1 : mini;
 };
+
+// 119. Pascal's Triangle II
+/**
+ * @param {number} rowIndex
+ * @return {number[]}
+ */
+var getRow = function (rowIndex) {
+  if (rowIndex === 0) return [1];
+
+  const row = [1];
+  let prev = 1;
+  for (let i = 1; i <= rowIndex; i++) {
+    let next_val = (prev * (rowIndex - i + 1)) / i;
+    row.push(next_val);
+    prev = next_val;
+  }
+  return row;
+};
