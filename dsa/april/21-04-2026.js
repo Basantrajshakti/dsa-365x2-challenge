@@ -74,3 +74,52 @@ var minimumHammingDistance = function (source, target, allowedSwaps) {
 
   return answer;
 };
+
+// With optimizations
+/**
+ * @param {number[]} source
+ * @param {number[]} target
+ * @param {number[][]} allowedSwaps
+ * @return {number}
+ */
+var minimumHammingDistance = function (source, target, swap) {
+  const n = source.length;
+  const root = new Int32Array(n);
+
+  for (let i = 0; i < n; i++) root[i] = i;
+
+  const find = (i) => {
+    let p = i;
+    while (p !== root[p]) p = root[p];
+    while (i !== p) {
+      const nxt = root[i];
+      root[i] = p;
+      i = nxt;
+    }
+    return p;
+  };
+
+  for (let i = 0; i < swap.length; i++) {
+    const r1 = find(swap[i][0]);
+    const r2 = find(swap[i][1]);
+    if (r1 !== r2) root[r1] = r2;
+  }
+
+  const freqs = new Map();
+  for (let i = 0; i < n; i++) {
+    const r = find(i);
+    if (!freqs.has(r)) freqs.set(r, new Map());
+    freqs.get(r).set(source[i], (freqs.get(r).get(source[i]) ?? 0) + 1);
+  }
+
+  let res = 0;
+  for (let i = 0; i < n; i++) {
+    const r = find(i);
+    const B = freqs.get(r);
+    const count = B.get(target[i]) ?? 0;
+    if (count > 0) B.set(target[i], count - 1);
+    else res++;
+  }
+
+  return res;
+};
