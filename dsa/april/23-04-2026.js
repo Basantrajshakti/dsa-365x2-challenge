@@ -36,3 +36,29 @@ var distance = function (nums) {
 
   return res;
 };
+
+// 228. Summary Ranges
+/**
+ * @param {number[]} nums
+ * @return {string[]}
+ */
+var summaryRanges = function (nums) {
+  if (nums.length === 0) return [];
+
+  let summary = [];
+  let flag = nums[0];
+  let ctr = flag;
+
+  for (let i = 1; i < nums.length; i++) {
+    if (flag + 1 === nums[i]) {
+      flag = nums[i];
+    } else {
+      summary.push(ctr === flag ? `${ctr}` : `${ctr}->${flag}`);
+      ctr = flag = nums[i];
+    }
+  }
+
+  summary.push(ctr === flag ? `${ctr}` : `${ctr}->${flag}`);
+
+  return summary;
+};
