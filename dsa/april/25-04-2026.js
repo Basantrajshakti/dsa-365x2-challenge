@@ -137,3 +137,22 @@ var maxDistance = function (side, points, k) {
 
   return lo;
 };
+
+// 283. Move Zeroes
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function (nums) {
+  if (nums.length === 0) return nums;
+
+  let ctr = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== 0) {
+      const temp = nums[i];
+      nums[i] = nums[ctr];
+      nums[ctr++] = temp;
+    }
+  }
+};
