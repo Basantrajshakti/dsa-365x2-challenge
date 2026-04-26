@@ -40,3 +40,33 @@ var containsCycle = function (grid) {
 
   return false;
 };
+
+// 303. Range Sum Query - Immutable
+/**
+ * @param {number[]} nums
+ */
+var NumArray = function (nums) {
+  // build 1-based prefix sum
+  this.prefix = new Array(nums.length);
+  this.prefix[0] = 0;
+
+  for (let i = 0; i < nums.length; i++) {
+    this.prefix[i + 1] = this.prefix[i] + nums[i];
+  }
+};
+
+/**
+ * @param {number} left
+ * @param {number} right
+ * @return {number}
+ */
+NumArray.prototype.sumRange = function (left, right) {
+  // sum of nums[left..right] = prefix[right + 1] - prefix[left]
+  return this.prefix[right + 1] - this.prefix[left];
+};
+
+/**
+ * Your NumArray object will be instantiated and called as such:
+ * var obj = new NumArray(nums)
+ * var param_1 = obj.sumRange(left,right)
+ */
