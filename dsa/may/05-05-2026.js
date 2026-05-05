@@ -41,3 +41,27 @@ var rotateRight = function (head, k) {
 
   return newHead;
 };
+
+// 496. Next Greater Element I
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var nextGreaterElement = function (nums1, nums2) {
+  let s = [],
+    map = {};
+
+  for (let i = 0; i < nums2.length; i++) {
+    if (s[s.length - 1] < nums2[i]) {
+      while (s[s.length - 1] < nums2[i]) map[s.pop()] = nums2[i];
+      i--;
+    } else s.push(nums2[i]);
+  }
+
+  while (s.length !== 0) map[s.pop()] = -1;
+
+  for (let i = 0; i < nums1.length; i++) s.push(map[nums1[i]]);
+
+  return s;
+};
