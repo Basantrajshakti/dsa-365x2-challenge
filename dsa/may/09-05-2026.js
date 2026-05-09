@@ -49,3 +49,37 @@ var rotateGrid = function (grid, k) {
   }
   return grid;
 };
+
+// With optimizations
+/**
+ * @param {number[][]} grid
+ * @param {number} k
+ * @return {number[][]}
+ */
+var rotateGrid = function (grid, k) {
+  const m = grid.length;
+  const n = grid[0].length;
+  const layers = Math.min(m, n) / 2;
+
+  const rotate = (layer) => {
+    const count = (m - 2 * layer) * 2 + (n - 2 * layer - 2) * 2;
+    const shift = k % count;
+    if (shift === 0) return;
+    let els = new Array(count);
+    let idx = 0;
+    for (let r = layer; r < m - layer; r++) els[idx++] = grid[r][layer];
+    for (let c = layer + 1; c < n - layer; c++) els[idx++] = grid[m - 1 - layer][c];
+    for (let r = m - 2 - layer; r >= layer; r--) els[idx++] = grid[r][n - 1 - layer];
+    for (let c = n - 2 - layer; c > layer; c--) els[idx++] = grid[layer][c];
+    els = els.slice(count - shift).concat(els.slice(0, count - shift));
+    idx = 0;
+    for (let r = layer; r < m - layer; r++) grid[r][layer] = els[idx++];
+    for (let c = layer + 1; c < n - layer; c++) grid[m - 1 - layer][c] = els[idx++];
+    for (let r = m - 2 - layer; r >= layer; r--) grid[r][n - 1 - layer] = els[idx++];
+    for (let c = n - 2 - layer; c > layer; c--) grid[layer][c] = els[idx++];
+  };
+
+  for (let layer = 0; layer < layers; layer++) rotate(layer);
+
+  return grid;
+};
