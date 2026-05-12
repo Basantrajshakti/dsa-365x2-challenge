@@ -18,3 +18,33 @@ var minimumEffort = function (tasks) {
 
   return totalEnergy;
 };
+
+// 566. Reshape the Matrix
+/**
+ * @param {number[][]} mat
+ * @param {number} r
+ * @param {number} c
+ * @return {number[][]}
+ */
+let matrixReshape = function (mat, r, c) {
+  const m = mat.length;
+  const n = mat[0].length;
+
+  if (m * n != r * c) {
+    return mat;
+  }
+
+  const reshaped = Array.from({ length: r }, () => Array(c).fill(0));
+
+  for (let k = 0; k < m * n; k++) {
+    let originalRow = Math.floor(k / n);
+    let originalColumn = k % n;
+
+    let newRow = Math.floor(k / c);
+    let newColumn = k % c;
+
+    reshaped[newRow][newColumn] = mat[originalRow][originalColumn];
+  }
+
+  return reshaped;
+};
