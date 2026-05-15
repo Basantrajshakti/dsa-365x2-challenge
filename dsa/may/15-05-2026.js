@@ -21,3 +21,24 @@ var findMin = function (nums) {
 
   return nums[left];
 };
+
+// 598. Range Addition II
+/**
+ * @param {number} m
+ * @param {number} n
+ * @param {number[][]} ops
+ * @return {number}
+ */
+var maxCount = function (m, n, ops) {
+  if (ops.length === 0) return m * n;
+
+  let minRow = ops[0][0];
+  let minCol = ops[0][1];
+
+  for (let i = 1; i < ops.length; i++) {
+    minRow = Math.min(minRow, ops[i][0]);
+    minCol = Math.min(minCol, ops[i][1]);
+  }
+
+  return minRow * minCol;
+};
