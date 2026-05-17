@@ -34,3 +34,28 @@ var canReach = function (arr, start) {
 
   return false;
 };
+
+// 605. Can Place Flowers
+/**
+ * @param {number[]} flowerbed
+ * @param {number} n
+ * @return {boolean}
+ */
+var canPlaceFlowers = function (flowerbed, n) {
+  let i = 0;
+
+  while (n !== 0 && i < flowerbed.length) {
+    if (flowerbed[i] === 1) {
+      i = i + 2;
+      continue;
+    }
+    if (!flowerbed[i - 1] && !flowerbed[i + 1]) {
+      n--;
+      i = i + 2;
+    } else {
+      i++;
+    }
+  }
+
+  return n === 0;
+};
