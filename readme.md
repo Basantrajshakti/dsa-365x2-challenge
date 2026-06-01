@@ -1,8 +1,8 @@
-# 🚀 dsa-365x2-challenge
+# 🚀 dsa-365x1-challenge
 
-**365 days × 2 problems/day = Consistency, clarity, and mastery.**
+**365 days × 1 problems/day = Consistency, clarity, and mastery.**
 
-This repository documents my **daily Data Structures & Algorithms practice**, solving **2 LeetCode problems every day** starting from **January 1, 2026**.
+This repository documents my **daily Data Structures & Algorithms practice**, solving **1 LeetCode problems every day** starting from **January 1, 2026**.
 
 The goal is simple:
 
@@ -13,7 +13,7 @@ The goal is simple:
 ## 📌 Challenge Rules
 
 - 🗓 **Start Date:** 01/01/2026
-- 🔢 **Problems per Day:** 2
+- 🔢 **Problems per Day:** 1
 - 🧠 **Platform:** LeetCode
 - ⏱ **Duration:** 365 days
 - 📦 **Total Target:** 730 problems
