@@ -1,0 +1,28 @@
+// Daily challenge
+
+// 3633. Earliest Finish Time for Land and Water Rides I
+/**
+ * @param {number[]} landStartTime
+ * @param {number[]} landDuration
+ * @param {number[]} waterStartTime
+ * @param {number[]} waterDuration
+ * @return {number}
+ */
+var earliestFinishTime = (startL, durL, startW, durW) => {
+  let minL = 3000,
+    minW = minL,
+    res = minW;
+  const n = startL.length;
+  const m = startW.length;
+
+  for (let i = 0; i < n; i++) minL = Math.min(minL, startL[i] + durL[i]);
+
+  for (let i = 0; i < m; i++) {
+    minW = Math.min(minW, startW[i] + durW[i]);
+    res = Math.min(res, Math.max(minL, startW[i]) + durW[i]);
+  }
+
+  for (let i = 0; i < n; i++) res = Math.min(res, Math.max(minW, startL[i]) + durL[i]);
+
+  return res;
+};
