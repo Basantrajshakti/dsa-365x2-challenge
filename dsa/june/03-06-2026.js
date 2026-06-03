@@ -1,0 +1,33 @@
+// Daily challenge
+
+// 3635. Earliest Finish Time for Land and Water Rides II
+/**
+ * @param {number[]} landStartTime
+ * @param {number[]} landDuration
+ * @param {number[]} waterStartTime
+ * @param {number[]} waterDuration
+ * @return {number}
+ */
+var earliestFinishTime = function (landStartTime, landDuration, waterStartTime, waterDuration) {
+  function getAns(firstStart, firstDuration, secondStart, secondDuration) {
+    // Earliest finish time of first category
+    let minFinish = Infinity;
+
+    for (let i = 0; i < firstStart.length; i++) {
+      minFinish = Math.min(minFinish, firstStart[i] + firstDuration[i]);
+    }
+
+    let ans = Infinity;
+
+    // Try every ride of second category
+    for (let i = 0; i < secondStart.length; i++) {
+      let finishTime = Math.max(secondStart[i], minFinish) + secondDuration[i];
+
+      ans = Math.min(ans, finishTime);
+    }
+
+    return ans;
+  }
+
+  return Math.min(getAns(landStartTime, landDuration, waterStartTime, waterDuration), getAns(waterStartTime, waterDuration, landStartTime, landDuration));
+};
