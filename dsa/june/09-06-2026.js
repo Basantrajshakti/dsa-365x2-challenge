@@ -1,0 +1,11 @@
+// Daily challenge
+
+// 3689. Maximum Total Subarray Value I
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var maxTotalValue = function (nums, k) {
+  return (Math.max(...nums) - Math.min(...nums)) * k;
+};
