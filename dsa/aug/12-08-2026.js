@@ -25,3 +25,28 @@ var maxSubarrayLength = function (nums, k) {
 
   return res;
 };
+
+// Optimized
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var maxSubarrayLength = function (nums, k) {
+  let i = 0;
+  let ans = 0;
+  let map = {};
+
+  for (let j = 0; j < nums.length; j++) {
+    map[nums[j]] = (map[nums[j]] || 0) + 1;
+
+    while (map[nums[j]] > k) {
+      map[nums[i]]--;
+      i++;
+    }
+
+    ans = Math.max(ans, j - i + 1);
+  }
+
+  return ans;
+};
