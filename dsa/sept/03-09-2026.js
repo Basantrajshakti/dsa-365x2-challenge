@@ -17,3 +17,23 @@ var uniformArray = function (nums1) {
   }
   return true;
 };
+
+// With optimizations
+/**
+ * @param {number[]} nums1
+ * @return {boolean}
+ */
+var uniformArray = function (nums1) {
+  let mn = nums1[0];
+  let hasOdd = false;
+
+  for (const v of nums1) {
+    if (v < mn) mn = v;
+
+    if (v & 1) hasOdd = true;
+  }
+
+  if (mn & 1) return true;
+
+  return !hasOdd;
+};
