@@ -1,0 +1,31 @@
+// 1541. Minimum Insertions to Balance a Parentheses String
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minInsertions = function (s) {
+  let ans = 0,
+    x = 0;
+  const n = s.length;
+
+  for (let i = 0; i < n; ++i) {
+    if (s[i] === "(") {
+      ++x;
+    } else {
+      if (i < n - 1 && s[i + 1] === ")") {
+        ++i;
+      } else {
+        ++ans;
+      }
+      if (x === 0) {
+        ++ans;
+      } else {
+        --x;
+      }
+    }
+  }
+
+  ans += x << 1;
+
+  return ans;
+};
