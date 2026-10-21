@@ -47,3 +47,43 @@ var minOperations = function (s) {
     return 3;
   }
 };
+
+// With optimizations
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var minOperations = function (s) {
+  var min = 1e10;
+  var max = -1e10;
+  var num = 0;
+  var sum = 1;
+  var bool = true;
+  var number = 1;
+  var minindex = -1;
+  var maxindex = -1;
+
+  for (var x = 0; x < s.length; x++) {
+    num = s.charCodeAt(x);
+    if (num < min) {
+      min = num;
+      sum = 1;
+      minindex = x;
+    } else if (num == min) {
+      sum++;
+    }
+    if (num > max) {
+      max = num;
+      number = 1;
+      maxindex = x;
+    } else if (num == max) {
+      number++;
+      maxindex = x;
+    }
+    if (x > 0 && s.charCodeAt(x) < s.charCodeAt(x - 1)) {
+      bool = false;
+    }
+  }
+
+  return bool ? 0 : s.length < 3 ? -1 : minindex == 0 || maxindex == s.length - 1 ? 1 : sum == 1 && number == 1 && minindex == s.length - 1 && maxindex == 0 ? 3 : 2;
+};
